@@ -13,3 +13,58 @@ This extension is installable from various sources:
 2. From the [TYPO3 Extension Repository](https://extensions.typo3.org/extension/mail_css_inliner/)
 
 After installing the extension registers itself as Swiftmailer plugin, no further configuration is necessary.
+
+## Purpose
+
+Designing mails is hard. Especially requirements like table layouts and inline styles are complicated to handle and take a lot of time to get right. This extension takes one burden off your shoulders and takes care of turning a regular stylesheet to inline styles.
+
+Before:
+
+```html
+<!doctype html>
+<html>
+    <head>
+        <title>CSS Inline Test</title>
+        <style>
+            body {
+                color: #333;
+            }
+            h1 {
+                font-size: 36px;
+            }
+            a {
+                color: #337ab7;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Headline</h1>
+        <p>Content with <a href="https://example.org">link</a>.</p>
+    </body>
+</html>
+```
+
+After:
+
+```html
+<html>
+  <head>
+  <title>CSS Inline Test</title>
+  <style>
+        body {
+            color: #333;
+        }
+        h1 {
+            font-size: 36px;
+        }
+        a {
+            color: #337ab7;
+        }
+    </style>
+</head>
+  <body style="color: #333;">
+      <h1 style="font-size: 36px;">Headline</h1>
+      <p>Content with <a href="https://example.org" style="color: #337ab7;" target="_blank">link</a>.</p>
+  </body>
+</html>
+```
