@@ -35,16 +35,6 @@ jobs:
       env: TYPO3_VERSION=^7.6
 
     - php: 7.1
-      env: TypoScript lint
-      script:
-        - composer lint:typoscript
-
-    - php: 7.1
-      env: XML lint
-      script:
-        - composer lint:xml
-
-    - php: 7.1
       env: Codestyle
       script:
         - composer lint:style
