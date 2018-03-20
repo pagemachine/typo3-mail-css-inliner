@@ -61,10 +61,12 @@ After:
             color: #337ab7;
         }
     </style>
-</head>
-  <body style="color: #333;">
-      <h1 style="font-size: 36px;">Headline</h1>
-      <p>Content with <a href="https://example.org" style="color: #337ab7;" target="_blank">link</a>.</p>
-  </body>
+    </head>
+    <body style="color: #333;">
+        <h1 style="font-size: 36px;">Headline</h1>
+        <p>Content with <a href="https://example.org" style="color: #337ab7;" target="_blank">link</a>.</p>
+    </body>
 </html>
 ```
+
+Currently only `<style>` elements are supported, external styles via `<link>` are not imported.
