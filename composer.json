@@ -28,7 +28,7 @@
   },
   "replace": {
     "mail_css_inliner": "self.version",
-    "typo3-ter/css_mail_inliner": "self.version"
+    "typo3-ter/mail-css-inliner": "self.version"
   },
   "config": {
     "sort-packages": true,
