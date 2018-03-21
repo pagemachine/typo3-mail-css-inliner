@@ -30,12 +30,12 @@ jobs:
       php: 7.1
       env: TYPO3_VERSION=^7.6
 
-    - php: 7.1
+    - php: 7.0
       env: Codestyle
       script:
         - composer lint:style
 
-    - php: 7.1
+    - php: 7.0
       env: Static analysis
       script:
         - composer analyze:php
