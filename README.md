@@ -16,7 +16,7 @@ After installing the extension registers itself as Swiftmailer plugin, no furthe
 
 ## Purpose
 
-Designing mails is hard. Especially requirements like table layouts and inline styles are complicated to handle and take a lot of time to get right. This extension takes one burden off your shoulders and takes care of turning a regular stylesheet to inline styles.
+Designing mails is hard. Especially requirements like table layouts and inline styles are complicated to handle and take a lot of time to get right. This extension takes one burden off your shoulders and takes care of turning a regular stylesheet to inline styles. See our blog post about [Mail styling in TYPO3 now easier](https://www.pagemachine.de/blog/mail-styling-typo3/).
 
 Before:
 
