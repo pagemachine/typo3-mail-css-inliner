@@ -54,12 +54,38 @@ class CssInlinerPlugin implements \Swift_Events_SendListener
     protected function processHtmlParts(\Swift_Mime_MimeEntity $entity)
     {
         // Only process HTML parts
-        if ($entity instanceof \Swift_Mime_MimePart && $entity->getContentType() === 'text/html') {
+        if ($entity instanceof \Swift_Mime_MimePart && ($this->isHtmlPart($entity) || $this->looksLikeHtmlPart($entity))) {
             $entity->setBody($this->converter->convert($entity->getBody()));
         }
 
         foreach ($entity->getChildren() as $childEntity) {
             $this->processHtmlParts($childEntity);
         }
+    }
+
+    /**
+     * Returns whether a given entity is an HTML part
+     *
+     * @param \Swift_Mime_MimePart $entity
+     * @return bool
+     */
+    private function isHtmlPart(\Swift_Mime_MimePart $entity)
+    {
+        return $entity->getContentType() === 'text/html';
+    }
+
+    /**
+     * Returns whether a given entity is a mixed multipart which looks like an HTML part
+     *
+     * If HTML was set as body and something was attached, \Swift_Mime_SimpleMimeEntity::setChildren()
+     * overwrites the content type of the part to "multipart/mixed" without any way to retrieve the
+     * original content type, thus use a simple heuristic to check for possible HTML content.
+     *
+     * @param \Swift_Mime_MimePart $entity
+     * @return bool
+     */
+    private function looksLikeHtmlPart(\Swift_Mime_MimePart $entity)
+    {
+        return $entity->getContentType() === 'multipart/mixed' && strpos($entity->getBody(), '<') !== false;
     }
 }
