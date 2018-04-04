@@ -54,10 +54,8 @@ class CssInlinerPlugin implements \Swift_Events_SendListener
     protected function processHtmlParts(\Swift_Mime_MimeEntity $entity)
     {
         // Only process HTML parts
-        if ($entity instanceof \Swift_Mime_MimePart) {
-            if ($this->isHtmlPart($entity) || $this->looksLikeHtmlPart($entity)) {
-                $entity->setBody($this->converter->convert($entity->getBody()));
-            }
+        if ($entity instanceof \Swift_Mime_MimePart && ($this->isHtmlPart($entity) || $this->looksLikeHtmlPart($entity))) {
+            $entity->setBody($this->converter->convert($entity->getBody()));
         }
 
         foreach ($entity->getChildren() as $childEntity) {
