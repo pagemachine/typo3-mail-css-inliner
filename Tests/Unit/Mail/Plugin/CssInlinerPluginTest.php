@@ -42,15 +42,15 @@ class CssInlinerPluginTest extends UnitTestCase
         /** @var \Swift_Mime_MimePart|\Prophecy\Prophecy\ObjectProphecy */
         $message = $this->prophesize(\Swift_Mime_MimePart::class);
         $message->getContentType()->willReturn('text/html');
-        $message->getBody()->willReturn('before');
-        $message->setBody('after')->shouldBeCalled();
+        $message->getBody()->willReturn('<p>before</p>');
+        $message->setBody('<p>after</p>')->shouldBeCalled();
         $message->getChildren()->willReturn([]);
 
         /** @var \Swift_Events_SendEvent|\Prophecy\Prophecy\ObjectProphecy */
         $event = $this->prophesize(\Swift_Events_SendEvent::class);
         $event->getMessage()->willReturn($message->reveal());
 
-        $this->converter->convert('before')->willReturn('after');
+        $this->converter->convert('<p>before</p>')->willReturn('<p>after</p>');
 
         $this->cssInlinerPlugin->beforeSendPerformed($event->reveal());
     }
@@ -68,8 +68,8 @@ class CssInlinerPluginTest extends UnitTestCase
         /** @var \Swift_Mime_MimePart|\Prophecy\Prophecy\ObjectProphecy */
         $htmlPart = $this->prophesize(\Swift_Mime_MimePart::class);
         $htmlPart->getContentType()->willReturn('text/html');
-        $htmlPart->getBody()->willReturn('before');
-        $htmlPart->setBody('after')->shouldBeCalled();
+        $htmlPart->getBody()->willReturn('<p>before</p>');
+        $htmlPart->setBody('<p>after</p>')->shouldBeCalled();
         $htmlPart->getChildren()->willReturn([]);
 
         /** @var \Swift_Mime_MimePart|\Prophecy\Prophecy\ObjectProphecy */
@@ -84,7 +84,35 @@ class CssInlinerPluginTest extends UnitTestCase
         $event = $this->prophesize(\Swift_Events_SendEvent::class);
         $event->getMessage()->willReturn($message->reveal());
 
-        $this->converter->convert('before')->willReturn('after');
+        $this->converter->convert('<p>before</p>')->willReturn('<p>after</p>');
+
+        $this->cssInlinerPlugin->beforeSendPerformed($event->reveal());
+    }
+
+    /**
+     * @test
+     */
+    public function processesHtmlBodyWithAttachment()
+    {
+        /** @var \Swift_Attachment|\Prophecy\Prophecy\ObjectProphecy */
+        $attachment = $this->prophesize(\Swift_Attachment::class);
+        $attachment->getContentType()->willReturn('application/pdf');
+        $attachment->getChildren()->willReturn([]);
+
+        /** @var \Swift_Mime_MimePart|\Prophecy\Prophecy\ObjectProphecy */
+        $message = $this->prophesize(\Swift_Mime_MimePart::class);
+        $message->getContentType()->willReturn('multipart/mixed');
+        $message->getBody()->willReturn('<p>before</p>');
+        $message->setBody('<p>after</p>')->shouldBeCalled();
+        $message->getChildren()->willReturn([
+            $attachment->reveal(),
+        ]);
+
+        /** @var \Swift_Events_SendEvent|\Prophecy\Prophecy\ObjectProphecy */
+        $event = $this->prophesize(\Swift_Events_SendEvent::class);
+        $event->getMessage()->willReturn($message->reveal());
+
+        $this->converter->convert('<p>before</p>')->willReturn('<p>after</p>');
 
         $this->cssInlinerPlugin->beforeSendPerformed($event->reveal());
     }
