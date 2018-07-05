@@ -40,7 +40,7 @@ class CssInlinerPluginTest extends UnitTestCase
     /**
      * @test
      */
-    public function processesHtmlPart()
+    public function processesHtmlInMessageBody()
     {
         /** @var MailMessage */
         $message = GeneralUtility::makeInstance(MailMessage::class);
@@ -59,7 +59,7 @@ class CssInlinerPluginTest extends UnitTestCase
     /**
      * @test
      */
-    public function processesChildren()
+    public function processesHtmlInMessagePart()
     {
         /** @var MailMessage */
         $message = GeneralUtility::makeInstance(MailMessage::class);
@@ -80,7 +80,7 @@ class CssInlinerPluginTest extends UnitTestCase
     /**
      * @test
      */
-    public function processesHtmlBodyWithAttachment()
+    public function ignoresMessageAttachments()
     {
         /** @var MailMessage */
         $message = GeneralUtility::makeInstance(MailMessage::class);
