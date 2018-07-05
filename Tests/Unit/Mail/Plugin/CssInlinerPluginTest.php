@@ -97,4 +97,25 @@ class CssInlinerPluginTest extends UnitTestCase
 
         $this->assertEquals('<p>after</p>', $message->getBody());
     }
+
+    /**
+     * @test
+     */
+    public function handlesMessagesWithPartsAndAttachmentsOnly()
+    {
+        /** @var MailMessage */
+        $message = GeneralUtility::makeInstance(MailMessage::class);
+        $message
+            ->addPart('<p>before</p>', 'text/html')
+            ->attach(new \Swift_Attachment('TEST', 'test.pdf', 'application/pdf'));
+        /** @var \Swift_Events_SendEvent|\Prophecy\Prophecy\ObjectProphecy */
+        $event = $this->prophesize(\Swift_Events_SendEvent::class);
+        $event->getMessage()->willReturn($message);
+
+        $this->converter->convert('<p>before</p>')->willReturn('<p>after</p>');
+
+        $this->cssInlinerPlugin->beforeSendPerformed($event->reveal());
+
+        $this->assertEquals('<p>after</p>', $message->getChildren()[0]->getBody());
+    }
 }
