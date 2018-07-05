@@ -8,6 +8,8 @@ namespace Pagemachine\MailCssInliner\Tests\Unit\Mail\Plugin;
 
 use Nimut\TestingFramework\TestCase\UnitTestCase;
 use Pagemachine\MailCssInliner\Mail\Plugin\CssInlinerPlugin;
+use TYPO3\CMS\Core\Mail\MailMessage;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TijsVerkoyen\CssToInlineStyles\CssToInlineStyles;
 
 /**
@@ -39,20 +41,18 @@ class CssInlinerPluginTest extends UnitTestCase
      */
     public function processesHtmlPart()
     {
-        /** @var \Swift_Mime_MimePart|\Prophecy\Prophecy\ObjectProphecy */
-        $message = $this->prophesize(\Swift_Mime_MimePart::class);
-        $message->getContentType()->willReturn('text/html');
-        $message->getBody()->willReturn('<p>before</p>');
-        $message->setBody('<p>after</p>')->shouldBeCalled();
-        $message->getChildren()->willReturn([]);
-
+        /** @var MailMessage */
+        $message = GeneralUtility::makeInstance(MailMessage::class);
+        $message->setBody('<p>before</p>', 'text/html');
         /** @var \Swift_Events_SendEvent|\Prophecy\Prophecy\ObjectProphecy */
         $event = $this->prophesize(\Swift_Events_SendEvent::class);
-        $event->getMessage()->willReturn($message->reveal());
+        $event->getMessage()->willReturn($message);
 
         $this->converter->convert('<p>before</p>')->willReturn('<p>after</p>');
 
         $this->cssInlinerPlugin->beforeSendPerformed($event->reveal());
+
+        $this->assertEquals('<p>after</p>', $message->getBody());
     }
 
     /**
@@ -60,33 +60,20 @@ class CssInlinerPluginTest extends UnitTestCase
      */
     public function processesChildren()
     {
-        /** @var \Swift_Mime_MimePart|\Prophecy\Prophecy\ObjectProphecy */
-        $plainPart = $this->prophesize(\Swift_Mime_MimePart::class);
-        $plainPart->getContentType()->willReturn('text/plain');
-        $plainPart->getChildren()->willReturn([]);
-
-        /** @var \Swift_Mime_MimePart|\Prophecy\Prophecy\ObjectProphecy */
-        $htmlPart = $this->prophesize(\Swift_Mime_MimePart::class);
-        $htmlPart->getContentType()->willReturn('text/html');
-        $htmlPart->getBody()->willReturn('<p>before</p>');
-        $htmlPart->setBody('<p>after</p>')->shouldBeCalled();
-        $htmlPart->getChildren()->willReturn([]);
-
-        /** @var \Swift_Mime_MimePart|\Prophecy\Prophecy\ObjectProphecy */
-        $message = $this->prophesize(\Swift_Mime_MimePart::class);
-        $message->getContentType()->willReturn('multipart/alternative');
-        $message->getChildren()->willReturn([
-            $plainPart->reveal(),
-            $htmlPart->reveal(),
-        ]);
-
+        /** @var MailMessage */
+        $message = GeneralUtility::makeInstance(MailMessage::class);
+        $message
+            ->addPart('before', 'text/plain')
+            ->addPart('<p>before</p>', 'text/html');
         /** @var \Swift_Events_SendEvent|\Prophecy\Prophecy\ObjectProphecy */
         $event = $this->prophesize(\Swift_Events_SendEvent::class);
-        $event->getMessage()->willReturn($message->reveal());
+        $event->getMessage()->willReturn($message);
 
         $this->converter->convert('<p>before</p>')->willReturn('<p>after</p>');
 
         $this->cssInlinerPlugin->beforeSendPerformed($event->reveal());
+
+        $this->assertEquals('<p>after</p>', $message->getChildren()[1]->getBody());
     }
 
     /**
@@ -94,26 +81,19 @@ class CssInlinerPluginTest extends UnitTestCase
      */
     public function processesHtmlBodyWithAttachment()
     {
-        /** @var \Swift_Attachment|\Prophecy\Prophecy\ObjectProphecy */
-        $attachment = $this->prophesize(\Swift_Attachment::class);
-        $attachment->getContentType()->willReturn('application/pdf');
-        $attachment->getChildren()->willReturn([]);
-
-        /** @var \Swift_Mime_MimePart|\Prophecy\Prophecy\ObjectProphecy */
-        $message = $this->prophesize(\Swift_Mime_MimePart::class);
-        $message->getContentType()->willReturn('multipart/mixed');
-        $message->getBody()->willReturn('<p>before</p>');
-        $message->setBody('<p>after</p>')->shouldBeCalled();
-        $message->getChildren()->willReturn([
-            $attachment->reveal(),
-        ]);
-
+        /** @var MailMessage */
+        $message = GeneralUtility::makeInstance(MailMessage::class);
+        $message
+            ->setBody('<p>before</p>', 'text/html')
+            ->attach(new \Swift_Attachment('TEST', 'test.pdf', 'application/pdf'));
         /** @var \Swift_Events_SendEvent|\Prophecy\Prophecy\ObjectProphecy */
         $event = $this->prophesize(\Swift_Events_SendEvent::class);
-        $event->getMessage()->willReturn($message->reveal());
+        $event->getMessage()->willReturn($message);
 
         $this->converter->convert('<p>before</p>')->willReturn('<p>after</p>');
 
         $this->cssInlinerPlugin->beforeSendPerformed($event->reveal());
+
+        $this->assertEquals('<p>after</p>', $message->getBody());
     }
 }
