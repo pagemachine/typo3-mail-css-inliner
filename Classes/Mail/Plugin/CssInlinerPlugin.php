@@ -1,5 +1,6 @@
 <?php
 declare(strict_types = 1);
+
 namespace Pagemachine\MailCssInliner\Mail\Plugin;
 
 /*
@@ -69,7 +70,7 @@ class CssInlinerPlugin implements \Swift_Events_SendListener
      * @param \Swift_Mime_MimePart $entity
      * @return bool
      */
-    private function isHtmlPart(\Swift_Mime_MimePart $entity)
+    private function isHtmlPart(\Swift_Mime_MimePart $entity): bool
     {
         return $entity->getContentType() === 'text/html';
     }
@@ -84,7 +85,7 @@ class CssInlinerPlugin implements \Swift_Events_SendListener
      * @param \Swift_Mime_MimePart $entity
      * @return bool
      */
-    private function looksLikeHtmlPart(\Swift_Mime_MimePart $entity)
+    private function looksLikeHtmlPart(\Swift_Mime_MimePart $entity): bool
     {
         return $entity->getContentType() === 'multipart/mixed' && strpos($entity->getBody(), '<') !== false;
     }

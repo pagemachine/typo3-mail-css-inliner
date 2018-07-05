@@ -1,5 +1,6 @@
 <?php
 declare(strict_types = 1);
+
 namespace Pagemachine\MailCssInliner\Tests\Unit\Mail\Plugin;
 
 /*
@@ -8,9 +9,9 @@ namespace Pagemachine\MailCssInliner\Tests\Unit\Mail\Plugin;
 
 use Nimut\TestingFramework\TestCase\UnitTestCase;
 use Pagemachine\MailCssInliner\Mail\Plugin\CssInlinerPlugin;
+use TijsVerkoyen\CssToInlineStyles\CssToInlineStyles;
 use TYPO3\CMS\Core\Mail\MailMessage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TijsVerkoyen\CssToInlineStyles\CssToInlineStyles;
 
 /**
  * Testcase for Pagemachine\MailCssInliner\Mail\Plugin\CssInlinerPlugin
