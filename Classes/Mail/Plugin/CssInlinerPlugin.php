@@ -28,7 +28,7 @@ class CssInlinerPlugin implements \Swift_Events_SendListener
     }
 
     /**
-     * @param Swift_Events_SendEvent $evt
+     * @param \Swift_Events_SendEvent $event
      */
     public function beforeSendPerformed(\Swift_Events_SendEvent $event)
     {
@@ -38,7 +38,7 @@ class CssInlinerPlugin implements \Swift_Events_SendListener
     }
 
     /**
-     * @param Swift_Events_SendEvent $evt
+     * @param \Swift_Events_SendEvent $event
      * @codeCoverageIgnore
      */
     public function sendPerformed(\Swift_Events_SendEvent $event)
