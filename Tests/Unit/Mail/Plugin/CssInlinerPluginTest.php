@@ -118,4 +118,25 @@ class CssInlinerPluginTest extends UnitTestCase
 
         $this->assertEquals('<p>after</p>', $message->getChildren()[0]->getBody());
     }
+
+    /**
+     * @test
+     */
+    public function handlesMessagesWithBodyAndPartsWithoutContentType()
+    {
+        /** @var MailMessage */
+        $message = GeneralUtility::makeInstance(MailMessage::class);
+        $message
+            ->setBody('<p>before</p>', 'text/html')
+            ->addPart('without content type');
+        /** @var \Swift_Events_SendEvent|\Prophecy\Prophecy\ObjectProphecy */
+        $event = $this->prophesize(\Swift_Events_SendEvent::class);
+        $event->getMessage()->willReturn($message);
+
+        $this->converter->convert('<p>before</p>')->willReturn('<p>after</p>');
+
+        $this->cssInlinerPlugin->beforeSendPerformed($event->reveal());
+
+        $this->assertEquals('<p>after</p>', $message->getBody());
+    }
 }
