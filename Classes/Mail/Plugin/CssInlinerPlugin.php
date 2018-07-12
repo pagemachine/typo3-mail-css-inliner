@@ -87,7 +87,7 @@ class CssInlinerPlugin implements \Swift_Events_SendListener
      */
     private function looksLikeHtmlPart(\Swift_Mime_MimePart $entity): bool
     {
-        return $entity->getContentType() === 'multipart/mixed'
+        return in_array($entity->getContentType(), ['multipart/mixed', 'multipart/alternative'], true)
             && !empty($entity->getBody())
             && strpos($entity->getBody(), '<') !== false;
     }
