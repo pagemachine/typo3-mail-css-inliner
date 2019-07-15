@@ -34,7 +34,7 @@ class MailerSlotTest extends UnitTestCase
     /**
      * @test
      */
-    public function registersCssInlinerPlugin()
+    public function registersCssInlinerPlugin(): void
     {
         /** @var Mailer|\Prophecy\Prophecy\ObjectProphecy */
         $mailer = $this->prophesize(Mailer::class);
