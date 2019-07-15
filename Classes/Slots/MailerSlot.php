@@ -17,11 +17,8 @@ class MailerSlot
 {
     /**
      * Registers the CSS inliner plugin
-     *
-     * @param Mailer $mailer
-     * @return void
      */
-    public function registerPlugin(Mailer $mailer)
+    public function registerPlugin(Mailer $mailer): void
     {
         $plugin = new CssInlinerPlugin();
         $mailer->registerPlugin($plugin);
