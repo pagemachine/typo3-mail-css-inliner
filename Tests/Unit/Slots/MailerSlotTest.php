@@ -38,7 +38,9 @@ class MailerSlotTest extends UnitTestCase
     {
         /** @var Mailer|\Prophecy\Prophecy\ObjectProphecy */
         $mailer = $this->prophesize(Mailer::class);
-        $mailer->registerPlugin(Argument::type(CssInlinerPlugin::class))->shouldBeCalled();
+        /** @var CssInlinerPlugin|Argument\Token\TypeToken */
+        $plugin = Argument::type(CssInlinerPlugin::class);
+        $mailer->registerPlugin($plugin)->shouldBeCalled();
 
         $this->mailerSlot->registerPlugin($mailer->reveal());
     }
