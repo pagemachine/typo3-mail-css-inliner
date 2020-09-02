@@ -12,7 +12,7 @@ parameters:
 
   ignoreErrors:
     - '#Constant TYPO3_MODE not found#'
-    - '#Undefined variable: \$_EXTKEY#'
+    - '#Variable \$_EXTKEY might not be defined.#'
     - '#ObjectManagerInterface::get\(\) invoked with [\d]+ parameters, 1 required#'
     - '#Call to an undefined method Prophecy\\Prophecy\\ObjectProphecy::.+#'
     - '#Array \(mixed(\[\])+\) does not accept string#'
