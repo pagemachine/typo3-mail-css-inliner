@@ -11,9 +11,9 @@ use TYPO3\CMS\Core\Mail\MailMessage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Testcase for mail processing
+ * Testcase for processing of Swiftmailer messages
  */
-final class MailTest extends AbstractMailTest
+final class SwiftmailerMailMessageTest extends AbstractMailTest
 {
     /**
      * @var array
@@ -21,6 +21,18 @@ final class MailTest extends AbstractMailTest
     protected $testExtensionsToLoad = [
         'typo3conf/ext/mail_css_inliner',
     ];
+
+    /**
+     * @return void
+     */
+    protected function setUp()
+    {
+        if (!is_subclass_of(MailMessage::class, \Swift_Message::class)) {
+            $this->markTestSkipped('Not using Swiftmailer');
+        }
+
+        parent::setUp();
+    }
 
     /**
      * @test

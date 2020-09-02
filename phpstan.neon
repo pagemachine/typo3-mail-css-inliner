@@ -8,7 +8,8 @@ parameters:
     - ext_emconf.php
     - ext_localconf.php
     - Classes
-    - Tests
+  excludes_analyse:
+    - Classes/Mail/Mailer.php
 
   ignoreErrors:
     - '#Variable \$_EXTKEY might not be defined.#'
