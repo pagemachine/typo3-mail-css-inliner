@@ -21,6 +21,7 @@ class MailerSlot
     public function registerPlugin(Mailer $mailer): void
     {
         $plugin = new CssInlinerPlugin();
+        // @phpstan-ignore-next-line
         $mailer->registerPlugin($plugin);
     }
 }
