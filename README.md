@@ -70,3 +70,9 @@ After:
 ```
 
 Currently only `<style>` elements are supported, external styles via `<link>` are not imported.
+
+## Testing
+
+All tests can be executed with the shipped Docker Compose definition:
+
+    docker-compose run --rm app composer build
