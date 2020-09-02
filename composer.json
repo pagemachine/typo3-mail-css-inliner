@@ -24,15 +24,19 @@
         "typo3-ter/mail-css-inliner": "self.version"
     },
     "require-dev": {
+        "bnf/typo3-http-factory": "^0.1.1",
         "cakephp/cakephp-codesniffer": "^3.0",
         "ergebnis/composer-normalize": "^2.8",
         "friendsofphp/php-cs-fixer": "^2.1",
         "jangregor/phpstan-prophecy": "^0.8.0",
         "nimut/testing-framework": "^4.1.3",
+        "php-http/curl-client": "^2.1",
         "php-parallel-lint/php-console-highlighter": "^0.5.0",
         "php-parallel-lint/php-parallel-lint": "^1.2",
         "phpstan/phpstan": "^0.12",
         "phpunit/phpunit": "^6.5",
+        "ralfmaxxx/guzzle-psr7-http-message-factory": "^1.0",
+        "rpkamp/mailhog-client": "^0.5.0",
         "slevomat/coding-standard": "^4.0",
         "squizlabs/php_codesniffer": "^3.1"
     },
@@ -94,7 +98,13 @@
         "lint:php": "parallel-lint --exclude bin --exclude vendor --exclude web .",
         "lint:style": "phpcs",
         "test": [
-            "@test:unit"
+            "@test:unit",
+            "@test:functional"
+        ],
+        "test:functional": [
+            "mkdir -p web/typo3conf/ext",
+            "ln -sfn ../../.. web/typo3conf/ext/$(composer config extra.typo3/cms.extension-key)",
+            "phpunit --configuration phpunit-functional.xml --colors=always"
         ],
         "test:unit": "phpunit --colors=always"
     }

@@ -6,11 +6,33 @@ services:
     environment:
       PHP_INI_PHAR__READONLY: "Off"
       TYPO3_VERSION: ${TYPO3_VERSION:-^9.5}
+      typo3DatabaseHost: mysql
+      typo3DatabaseUsername: root
+      typo3DatabasePassword: root
+      typo3DatabaseName: typo3
     depends_on:
+      - mail
+      - mysql
       - ssh-key
     volumes:
       - ./:/var/www/html
       - ssh-agent:/.ssh-agent
+
+  mysql:
+    image: mysql:5.7
+    command:
+      - mysqld
+      - --character-set-server=utf8mb4
+    environment:
+      MYSQL_DATABASE: typo3
+      MYSQL_USER: typo3
+      MYSQL_PASSWORD: typo3
+      MYSQL_ROOT_PASSWORD: root
+    tmpfs:
+      - /var/lib/mysql
+
+  mail:
+    image: mailhog/mailhog:v1.0.1
 
   ssh-agent:
     image: docksal/ssh-agent:1.3
