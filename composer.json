@@ -1,8 +1,13 @@
 {
   "name": "pagemachine/typo3-mail-css-inliner",
-  "description": "CSS inliner for the TYPO3 mailer ",
-  "keywords": ["typo3", "mail", "css", "inline"],
   "type": "typo3-cms-extension",
+  "description": "CSS inliner for the TYPO3 mailer ",
+  "keywords": [
+    "typo3",
+    "mail",
+    "css",
+    "inline"
+  ],
   "license": "GPL-3.0-or-later",
   "authors": [
     {
@@ -14,6 +19,9 @@
     "php": "^7.2",
     "tijsverkoyen/css-to-inline-styles": "^2.2",
     "typo3/cms-core": "^8.7 || ^9.5"
+  },
+  "replace": {
+    "typo3-ter/mail-css-inliner": "self.version"
   },
   "require-dev": {
     "cakephp/cakephp-codesniffer": "^3.0",
@@ -27,12 +35,9 @@
     "slevomat/coding-standard": "^4.0",
     "squizlabs/php_codesniffer": "^3.1"
   },
-  "replace": {
-    "typo3-ter/mail-css-inliner": "self.version"
-  },
   "config": {
-    "sort-packages": true,
-    "bin-dir": "bin"
+    "bin-dir": "bin",
+    "sort-packages": true
   },
   "extra": {
     "typo3/cms": {
@@ -40,28 +45,6 @@
       "cms-package-dir": "{$vendor-dir}/typo3/cms",
       "web-dir": "web"
     }
-  },
-  "scripts": {
-    "build": [
-      "@composer validate --ansi",
-      "@composer install",
-      "@composer normalize --no-update-lock --dry-run",
-      "@lint",
-      "@test"
-    ],
-    "analyze:php": "phpstan analyse --ansi --no-progress --configuration=phpstan.neon --level=5 *.php Classes Tests",
-    "lint:php": "parallel-lint --exclude bin --exclude vendor --exclude web .",
-    "lint:style": "phpcs",
-    "fix:style": "phpcbf",
-    "lint": [
-      "@lint:php",
-      "@lint:style",
-      "@analyze:php"
-    ],
-    "test:unit": "phpunit --colors=always",
-    "test": [
-      "@test:unit"
-    ]
   },
   "autoload": {
     "psr-4": {
@@ -72,5 +55,27 @@
     "psr-4": {
       "Pagemachine\\MailCssInliner\\Tests\\": "Tests/"
     }
+  },
+  "scripts": {
+    "analyze:php": "phpstan analyse --ansi --no-progress --configuration=phpstan.neon --level=5 *.php Classes Tests",
+    "build": [
+      "@composer validate --ansi",
+      "@composer install",
+      "@composer normalize --no-update-lock --dry-run",
+      "@lint",
+      "@test"
+    ],
+    "fix:style": "phpcbf",
+    "lint": [
+      "@lint:php",
+      "@lint:style",
+      "@analyze:php"
+    ],
+    "lint:php": "parallel-lint --exclude bin --exclude vendor --exclude web .",
+    "lint:style": "phpcs",
+    "test": [
+      "@test:unit"
+    ],
+    "test:unit": "phpunit --colors=always"
   }
 }
