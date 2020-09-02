@@ -11,6 +11,7 @@ services:
       typo3DatabasePassword: root
       typo3DatabaseName: typo3
     depends_on:
+      - mail
       - mysql
       - ssh-key
     volumes:
@@ -29,6 +30,9 @@ services:
       MYSQL_ROOT_PASSWORD: root
     tmpfs:
       - /var/lib/mysql
+
+  mail:
+    image: mailhog/mailhog:v1.0.1
 
   ssh-agent:
     image: docksal/ssh-agent:1.3
