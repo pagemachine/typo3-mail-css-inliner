@@ -11,9 +11,9 @@ use TYPO3\CMS\Core\Mail\MailMessage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Testcase for mail processing
+ * Testcase for processing of Swiftmailer messages
  */
-final class MailTest extends AbstractMailTest
+final class SwiftmailerMailMessageTest extends AbstractMailTest
 {
     /**
      * @var array
