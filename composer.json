@@ -59,11 +59,30 @@
     "scripts": {
         "analyze:php": "phpstan analyse --ansi --no-progress --configuration=phpstan.neon --level=5 *.php Classes Tests",
         "build": [
+            "@composer require --no-progress --ansi --update-with-dependencies typo3/cms-core $TYPO3_VERSION",
             "@composer validate --ansi",
-            "@composer install",
             "@composer normalize --no-update-lock --dry-run",
             "@lint",
             "@test"
+        ],
+        "build:cleanup": [
+            "git reset --hard",
+            "git clean -xfd"
+        ],
+        "build:ter:vendors": [
+            "@composer global require clue/phar-composer",
+            "(mkdir -p /tmp/vendors && cd /tmp/vendors && composer require tijsverkoyen/css-to-inline-styles:^2.2 && composer global exec phar-composer build -v)",
+            "cp /tmp/vendors/vendors.phar .",
+            "echo \"require 'phar://' . \\TYPO3\\CMS\\Core\\Utility\\ExtensionManagementUtility::extPath('$(composer config extra.typo3/cms.extension-key)') . 'vendors.phar/vendor/autoload.php';\" >> ext_localconf.php"
+        ],
+        "deploy:ter": [
+            "@build:cleanup",
+            "@build:ter:vendors",
+            "@deploy:ter:upload"
+        ],
+        "deploy:ter:upload": [
+            "@composer global require helhum/ter-client",
+            "ter-client upload $(composer config extra.typo3/cms.extension-key) . -u $TYPO3_ORG_USERNAME -p $TYPO3_ORG_PASSWORD -m \"$(git tag -l --format='%(contents)' $TRAVIS_TAG)\""
         ],
         "fix:style": "phpcbf",
         "lint": [
