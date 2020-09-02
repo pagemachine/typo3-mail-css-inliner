@@ -41,7 +41,6 @@
         "squizlabs/php_codesniffer": "^3.1"
     },
     "config": {
-        "bin-dir": "bin",
         "sort-packages": true
     },
     "extra": {
@@ -95,7 +94,7 @@
             "@lint:style",
             "@analyze:php"
         ],
-        "lint:php": "parallel-lint --exclude bin --exclude vendor --exclude web .",
+        "lint:php": "parallel-lint --exclude vendor --exclude web .",
         "lint:style": "phpcs",
         "test": [
             "@test:unit",
