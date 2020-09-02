@@ -45,6 +45,7 @@
     "build": [
       "@composer validate --ansi",
       "@composer install",
+      "@composer normalize --no-update-lock --dry-run",
       "@lint",
       "@test"
     ],
