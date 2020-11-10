@@ -68,4 +68,18 @@ HTML
 
         $this->assertLastMessageBodyContains($expectedSubstring);
     }
+
+    /**
+     * @test
+     */
+    public function skipsMailWithoutHtmlBody(): void
+    {
+        GeneralUtility::makeInstance(MailMessage::class)
+            ->subject('Mail CSS Inliner Test')
+            ->to('test@example.org')
+            ->text('Test')
+            ->send();
+
+        $this->assertLastMessageBodyNotContains('<');
+    }
 }
