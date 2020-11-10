@@ -43,6 +43,13 @@ abstract class AbstractMailTest extends FunctionalTestCase
         $this->assertContains($substring, $messageBody);
     }
 
+    protected function assertLastMessageBodyNotContains(string $substring)
+    {
+        $messageBody = $this->getMailHogClient()->getLastMessage()->body;
+
+        $this->assertNotContains($substring, $messageBody);
+    }
+
     protected function purgeMailMessages(): void
     {
         $this->getMailHogClient()->purgeMessages();

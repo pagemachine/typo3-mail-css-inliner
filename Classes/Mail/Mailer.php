@@ -20,7 +20,7 @@ final class Mailer extends CoreMailer
      */
     public function send(RawMessage $message, Envelope $envelope = null): void
     {
-        if ($message instanceof Email) {
+        if ($message instanceof Email && !empty($message->getHtmlBody())) {
             $converter = new CssToInlineStyles();
             $message->html($converter->convert($message->getHtmlBody()));
         }
