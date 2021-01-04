@@ -47,8 +47,8 @@
     },
     "extra": {
         "typo3/cms": {
-            "extension-key": "mail_css_inliner",
             "cms-package-dir": "{$vendor-dir}/typo3/cms",
+            "extension-key": "mail_css_inliner",
             "web-dir": "web"
         }
     },
