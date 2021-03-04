@@ -10,6 +10,7 @@ parameters:
     - Classes
   excludes_analyse:
     - Classes/Mail/Mailer.php
+    - Classes/Mail/FluidEmail.php
 
   ignoreErrors:
     - '#Variable \$_EXTKEY might not be defined.#'
