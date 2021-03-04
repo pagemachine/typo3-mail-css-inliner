@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Pagemachine\MailCssInliner\Mail;
 
@@ -18,7 +18,7 @@ class FluidEmail extends CoreFluidEmail
 
         if ($format === 'html') {
             $converter = new CssToInlineStyles();
-            return $converter->convert($content);
+            $content = $converter->convert($content);
         }
 
         return $content;
