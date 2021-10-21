@@ -28,7 +28,7 @@
         "cakephp/cakephp-codesniffer": "^3.0",
         "codedungeon/phpunit-result-printer": "^0.31.0",
         "ergebnis/composer-normalize": "^2.8",
-        "friendsofphp/php-cs-fixer": "^2.1",
+        "friendsofphp/php-cs-fixer": "^3.0",
         "jangregor/phpstan-prophecy": "^0.8.0",
         "nimut/testing-framework": "^5.1",
         "php-http/curl-client": "^2.1",
