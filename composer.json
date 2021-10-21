@@ -26,7 +26,7 @@
     "require-dev": {
         "bnf/typo3-http-factory": "^0.1.1",
         "cakephp/cakephp-codesniffer": "^3.0",
-        "codedungeon/phpunit-result-printer": "^0.28.0",
+        "codedungeon/phpunit-result-printer": "^0.31.0",
         "ergebnis/composer-normalize": "^2.8",
         "friendsofphp/php-cs-fixer": "^2.1",
         "jangregor/phpstan-prophecy": "^0.8.0",
