@@ -38,7 +38,7 @@
         "phpunit/phpunit": "^6.5",
         "ralfmaxxx/guzzle-psr7-http-message-factory": "^1.0",
         "rpkamp/mailhog-client": "^0.5.0",
-        "slevomat/coding-standard": "^6.0",
+        "slevomat/coding-standard": "^7.0",
         "squizlabs/php_codesniffer": "^3.1",
         "swiftmailer/swiftmailer": "~5.4.5"
     },
