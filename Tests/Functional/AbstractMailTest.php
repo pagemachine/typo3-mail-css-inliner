@@ -30,7 +30,7 @@ abstract class AbstractMailTest extends FunctionalTestCase
     /**
      * @return void
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -41,14 +41,14 @@ abstract class AbstractMailTest extends FunctionalTestCase
     {
         $messageBody = $this->getMailHogClient()->getLastMessage()->body;
 
-        $this->assertContains($substring, $messageBody);
+        $this->assertStringContainsString($substring, $messageBody);
     }
 
     protected function assertLastMessageBodyNotContains(string $substring)
     {
         $messageBody = $this->getMailHogClient()->getLastMessage()->body;
 
-        $this->assertNotContains($substring, $messageBody);
+        $this->assertStringNotContainsString($substring, $messageBody);
     }
 
     protected function purgeMailMessages(): void

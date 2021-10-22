@@ -26,7 +26,7 @@ final class SwiftmailerMailMessageTest extends AbstractMailTest
     /**
      * @return void
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         if (!is_subclass_of(MailMessage::class, \Swift_Message::class)) {
             $this->markTestSkipped('Not using Swiftmailer');
