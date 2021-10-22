@@ -32,7 +32,7 @@ class CssInlinerPluginTest extends UnitTestCase
     /**
      * Set up this testcase
      */
-    public function setUp()
+    public function setUp(): void
     {
         if (!is_subclass_of(MailMessage::class, \Swift_Message::class)) {
             $this->markTestSkipped('Not using Swiftmailer');
