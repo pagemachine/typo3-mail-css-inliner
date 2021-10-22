@@ -18,7 +18,7 @@
     "require": {
         "php": "^7.2",
         "tijsverkoyen/css-to-inline-styles": "^2.2",
-        "typo3/cms-core": "^8.7 || ^9.5 || ^10.4"
+        "typo3/cms-core": "^9.5 || ^10.4"
     },
     "replace": {
         "typo3-ter/mail-css-inliner": "self.version"
