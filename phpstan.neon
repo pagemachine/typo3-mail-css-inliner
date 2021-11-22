@@ -8,9 +8,14 @@ parameters:
     - ext_emconf.php
     - ext_localconf.php
     - Classes
-  excludes_analyse:
+  excludePaths:
     - Classes/Mail/Mailer.php
 
   ignoreErrors:
-    - '#Variable \$_EXTKEY might not be defined.#'
+    - message: '#Variable \$_EXTKEY might not be defined.#'
+      path: ext_emconf.php
+    - message: '#Right side of || is always false.#'
+      path: ext_localconf.php
+      count: 1
+
   reportUnmatchedIgnoredErrors: false
