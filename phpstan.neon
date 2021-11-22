@@ -8,7 +8,7 @@ parameters:
     - ext_emconf.php
     - ext_localconf.php
     - Classes
-  excludes_analyse:
+  excludePaths:
     - Classes/Mail/Mailer.php
 
   ignoreErrors:
