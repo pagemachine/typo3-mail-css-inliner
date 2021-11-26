@@ -24,11 +24,11 @@
         "typo3-ter/mail-css-inliner": "self.version"
     },
     "require-dev": {
-        "bnf/typo3-http-factory": "^0.1.1",
         "cakephp/cakephp-codesniffer": "^4.0",
         "codedungeon/phpunit-result-printer": "^0.31.0",
         "ergebnis/composer-normalize": "^2.8",
         "friendsofphp/php-cs-fixer": "^3.0",
+        "http-interop/http-factory-guzzle": "^1.2",
         "jangregor/phpstan-prophecy": "^1.0.0",
         "nimut/testing-framework": "^6.0",
         "php-http/curl-client": "^2.1",
@@ -36,7 +36,6 @@
         "php-parallel-lint/php-parallel-lint": "^1.2",
         "phpstan/phpstan": "^1.0",
         "phpunit/phpunit": "^9.0",
-        "ralfmaxxx/guzzle-psr7-http-message-factory": "^1.0",
         "rpkamp/mailhog-client": "^0.5.0",
         "slevomat/coding-standard": "^7.0",
         "squizlabs/php_codesniffer": "^3.1",
