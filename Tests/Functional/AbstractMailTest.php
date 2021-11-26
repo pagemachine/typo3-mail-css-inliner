@@ -8,10 +8,8 @@ namespace Pagemachine\MailCssInliner\Tests\Functional;
  * This file is part of the Pagemachine Mail CSS Inliner project.
  */
 
-use Bnf\Typo3HttpFactory\ResponseFactory;
-use Bnf\Typo3HttpFactory\StreamFactory;
-use Http\Client\Curl\Client as HttpClient;
-use Http\Message\Guzzle\RequestFactory;
+use Http\Client\Curl\Client as HttpCurlClient;
+use Http\Message\MessageFactory\GuzzleMessageFactory;
 use Nimut\TestingFramework\TestCase\FunctionalTestCase;
 use rpkamp\Mailhog\MailhogClient;
 
@@ -59,11 +57,8 @@ abstract class AbstractMailTest extends FunctionalTestCase
     protected function getMailHogClient(): MailhogClient
     {
         $mailHogClient = new MailhogClient(
-            new HttpClient(
-                new ResponseFactory(),
-                new StreamFactory()
-            ),
-            new RequestFactory(),
+            new HttpCurlClient(),
+            new GuzzleMessageFactory(),
             'http://mail:8025'
         );
 
