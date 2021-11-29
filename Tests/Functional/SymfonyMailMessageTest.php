@@ -12,6 +12,8 @@ use Http\Client\Curl\Client as HttpCurlClient;
 use Http\Message\MessageFactory\GuzzleMessageFactory;
 use Nimut\TestingFramework\TestCase\FunctionalTestCase;
 use rpkamp\Mailhog\MailhogClient;
+use TYPO3\CMS\Core\Mail\FluidEmail;
+use TYPO3\CMS\Core\Mail\Mailer;
 use TYPO3\CMS\Core\Mail\MailMessage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -33,6 +35,9 @@ final class SymfonyMailMessageTest extends FunctionalTestCase
         'MAIL' => [
             'transport' => 'smtp',
             'transport_smtp_server' => 'mail:1025',
+            'templateRootPaths' => [
+                101 => 'EXT:mail_css_inliner/Tests/Functional/Fixtures/Templates/Email',
+            ],
         ],
     ];
 
@@ -49,7 +54,7 @@ final class SymfonyMailMessageTest extends FunctionalTestCase
     /**
      * @test
      */
-    public function injectsInlineStyles(): void
+    public function injectsInlineStylesIntoMailMessage(): void
     {
         $htmlBody = <<<HTML
 <html>
@@ -72,6 +77,27 @@ HTML
             ->to('test@example.org')
             ->html($htmlBody)
             ->send();
+
+        $expectedSubstring = <<<HTML
+<p style="color: red;">Test</p>
+HTML
+        ;
+
+        $this->assertLastMessageBodyContains($expectedSubstring);
+    }
+
+    /**
+     * @test
+     */
+    public function injectsInlineStylesIntoFluidEmail(): void
+    {
+        $email = GeneralUtility::makeInstance(FluidEmail::class)
+            ->subject('Mail CSS Inliner Test')
+            ->to('test@example.org')
+            ->setTemplate('InlineStyles')
+            ->assign('content', 'Test')
+            ;
+        GeneralUtility::makeInstance(Mailer::class)->send($email);
 
         $expectedSubstring = <<<HTML
 <p style="color: red;">Test</p>
