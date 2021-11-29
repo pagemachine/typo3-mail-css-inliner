@@ -18,7 +18,7 @@
     "require": {
         "php": "^7.4",
         "tijsverkoyen/css-to-inline-styles": "^2.2",
-        "typo3/cms-core": "^9.5 || ^10.4 || ^11.5"
+        "typo3/cms-core": "^10.4 || ^11.5"
     },
     "replace": {
         "typo3-ter/mail-css-inliner": "self.version"
@@ -38,8 +38,7 @@
         "phpunit/phpunit": "^9.0",
         "rpkamp/mailhog-client": "^0.5.0",
         "slevomat/coding-standard": "^7.0",
-        "squizlabs/php_codesniffer": "^3.1",
-        "swiftmailer/swiftmailer": "~5.4.5"
+        "squizlabs/php_codesniffer": "^3.1"
     },
     "config": {
         "sort-packages": true
