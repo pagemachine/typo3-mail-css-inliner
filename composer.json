@@ -1,14 +1,14 @@
 {
     "name": "pagemachine/typo3-mail-css-inliner",
-    "type": "typo3-cms-extension",
     "description": "CSS inliner for the TYPO3 mailer ",
+    "license": "GPL-3.0-or-later",
+    "type": "typo3-cms-extension",
     "keywords": [
         "typo3",
         "mail",
         "css",
         "inline"
     ],
-    "license": "GPL-3.0-or-later",
     "authors": [
         {
             "name": "Mathias Brodala",
@@ -19,9 +19,6 @@
         "php": "^7.4",
         "tijsverkoyen/css-to-inline-styles": "^2.2",
         "typo3/cms-core": "^10.4 || ^11.5"
-    },
-    "replace": {
-        "typo3-ter/mail-css-inliner": "self.version"
     },
     "require-dev": {
         "cakephp/cakephp-codesniffer": "^4.0",
@@ -40,15 +37,8 @@
         "slevomat/coding-standard": "^7.0",
         "squizlabs/php_codesniffer": "^3.1"
     },
-    "config": {
-        "sort-packages": true
-    },
-    "extra": {
-        "typo3/cms": {
-            "cms-package-dir": "{$vendor-dir}/typo3/cms",
-            "extension-key": "mail_css_inliner",
-            "web-dir": "web"
-        }
+    "replace": {
+        "typo3-ter/mail-css-inliner": "self.version"
     },
     "autoload": {
         "psr-4": {
@@ -58,6 +48,16 @@
     "autoload-dev": {
         "psr-4": {
             "Pagemachine\\MailCssInliner\\Tests\\": "Tests/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "typo3/cms": {
+            "cms-package-dir": "{$vendor-dir}/typo3/cms",
+            "extension-key": "mail_css_inliner",
+            "web-dir": "web"
         }
     },
     "scripts": {
