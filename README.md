@@ -12,7 +12,7 @@ This extension is installable from various sources:
 
 2. From the [TYPO3 Extension Repository](https://extensions.typo3.org/extension/mail_css_inliner/)
 
-After installing the extension registers itself as Swiftmailer plugin, no further configuration is necessary.
+After installing the extension registers itself automatically, no further configuration is necessary.
 
 ## Purpose
 
