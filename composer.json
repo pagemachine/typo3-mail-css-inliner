@@ -34,7 +34,7 @@
         "phpstan/phpstan": "^1.0",
         "phpunit/phpunit": "^9.0",
         "rpkamp/mailhog-client": "^0.5.0",
-        "slevomat/coding-standard": "^7.0",
+        "slevomat/coding-standard": "^8.0",
         "squizlabs/php_codesniffer": "^3.1"
     },
     "replace": {
