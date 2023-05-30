@@ -20,8 +20,10 @@ class FluidEmail extends CoreFluidEmail
      */
     public function html($body, string $charset = 'utf-8')
     {
-        $converter = new CssToInlineStyles();
-        $body = $converter->convert($body);
+        if (!empty($body)) {
+            $converter = new CssToInlineStyles();
+            $body = $converter->convert($body);
+        }
 
         return parent::html($body, $charset);
     }
