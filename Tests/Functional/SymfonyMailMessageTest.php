@@ -10,27 +10,22 @@ namespace Pagemachine\MailCssInliner\Tests\Functional;
 
 use Http\Client\Curl\Client as HttpCurlClient;
 use Http\Message\MessageFactory\GuzzleMessageFactory;
-use Nimut\TestingFramework\TestCase\FunctionalTestCase;
 use rpkamp\Mailhog\MailhogClient;
 use TYPO3\CMS\Core\Mail\FluidEmail;
 use TYPO3\CMS\Core\Mail\Mailer;
 use TYPO3\CMS\Core\Mail\MailMessage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 /**
  * Testcase for processing of Symfony Mail messages
  */
 final class SymfonyMailMessageTest extends FunctionalTestCase
 {
-    /**
-     * @var array
-     */
     protected $testExtensionsToLoad = [
         'typo3conf/ext/mail_css_inliner',
     ];
-    /**
-     * @var array
-     */
+
     protected $configurationToUseInTestInstance = [
         'MAIL' => [
             'transport' => 'smtp',
