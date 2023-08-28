@@ -22,11 +22,11 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
  */
 final class SymfonyMailMessageTest extends FunctionalTestCase
 {
-    protected $testExtensionsToLoad = [
+    protected array $testExtensionsToLoad = [
         'typo3conf/ext/mail_css_inliner',
     ];
 
-    protected $configurationToUseInTestInstance = [
+    protected array $configurationToUseInTestInstance = [
         'MAIL' => [
             'transport' => 'smtp',
             'transport_smtp_server' => 'mail:1025',
