@@ -18,7 +18,7 @@ class FluidEmail extends CoreFluidEmail
      *
      * @return $this
      */
-    public function html($body, string $charset = 'utf-8')
+    public function html($body, string $charset = 'utf-8'): static
     {
         if (!empty($body)) {
             $converter = new CssToInlineStyles();
