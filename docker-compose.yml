@@ -8,6 +8,7 @@ services:
       PHP_INI_PHAR__READONLY: "Off"
       TAG:
       TYPO3_VERSION: ${TYPO3_VERSION:-^12.4}
+      TYPO3_API_TOKEN:
       TYPO3_API_PASSWORD:
       TYPO3_API_USERNAME:
       typo3DatabaseHost: mysql
