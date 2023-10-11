@@ -53,9 +53,9 @@
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "ergebnis/composer-normalize": true,
+            "php-http/discovery": false,
             "typo3/class-alias-loader": true,
-            "typo3/cms-composer-installers": true,
-            "php-http/discovery": false
+            "typo3/cms-composer-installers": true
         },
         "sort-packages": true
     },
