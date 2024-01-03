@@ -2,6 +2,7 @@
 .gitattributes export-ignore
 .github export-ignore
 .gitignore export-ignore
+.php-cs-fixer.* export-ignore
 bower.json export-ignore
 docker-compose.yml export-ignore
 Gruntfile.js export-ignore
