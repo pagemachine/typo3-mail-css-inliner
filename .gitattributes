@@ -7,7 +7,6 @@ bower.json export-ignore
 docker-compose.yml export-ignore
 Gruntfile.js export-ignore
 package.json export-ignore
-phpcs.xml export-ignore
 phpstan.neon export-ignore
 phpunit-functional.xml export-ignore
 phpunit.xml export-ignore
