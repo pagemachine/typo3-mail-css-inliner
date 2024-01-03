@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Pagemachine\MailCssInliner\Tests\Functional;
 
@@ -36,9 +36,6 @@ final class SymfonyMailMessageTest extends FunctionalTestCase
         ],
     ];
 
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -91,7 +88,7 @@ HTML
             ->to('test@example.org')
             ->setTemplate('InlineStyles')
             ->assign('content', 'Test')
-            ;
+        ;
         GeneralUtility::makeInstance(Mailer::class)->send($email);
 
         $expectedSubstring = <<<HTML
@@ -120,14 +117,14 @@ HTML
     {
         $messageBody = $this->getMailHogClient()->getLastMessage()->body;
 
-        $this->assertStringContainsString($substring, $messageBody);
+        self::assertStringContainsString($substring, $messageBody);
     }
 
     protected function assertLastMessageBodyNotContains(string $substring)
     {
         $messageBody = $this->getMailHogClient()->getLastMessage()->body;
 
-        $this->assertStringNotContainsString($substring, $messageBody);
+        self::assertStringNotContainsString($substring, $messageBody);
     }
 
     protected function purgeMailMessages(): void
