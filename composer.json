@@ -17,6 +17,7 @@
     ],
     "require": {
         "php": "^8.0",
+        "symfony/mailer": "^5.4 || ^6.4",
         "tijsverkoyen/css-to-inline-styles": "^2.2",
         "typo3/cms-core": "^11.5 || ^12.4"
     },
