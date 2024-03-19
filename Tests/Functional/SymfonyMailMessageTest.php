@@ -9,7 +9,8 @@ namespace Pagemachine\MailCssInliner\Tests\Functional;
  */
 
 use Http\Client\Curl\Client as HttpCurlClient;
-use Http\Message\MessageFactory\GuzzleMessageFactory;
+use Http\Factory\Guzzle\RequestFactory;
+use Http\Factory\Guzzle\StreamFactory;
 use rpkamp\Mailhog\MailhogClient;
 use TYPO3\CMS\Core\Mail\FluidEmail;
 use TYPO3\CMS\Core\Mail\Mailer;
@@ -136,7 +137,8 @@ HTML
     {
         $mailHogClient = new MailhogClient(
             new HttpCurlClient(),
-            new GuzzleMessageFactory(),
+            new RequestFactory(),
+            new StreamFactory(),
             'http://mail:8025'
         );
 
