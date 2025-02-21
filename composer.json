@@ -33,7 +33,7 @@
         "phpstan/phpstan": "^1.0 || ^2.0",
         "phpunit/phpunit": "^9.0",
         "rpkamp/mailhog-client": "^2.0.0",
-        "typo3/coding-standards": "^0.7.1",
+        "typo3/coding-standards": "^0.7.1 || ^0.8.0",
         "typo3/testing-framework": "^7.0"
     },
     "replace": {
