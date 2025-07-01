@@ -31,8 +31,9 @@ services:
       MYSQL_USER: typo3
       MYSQL_PASSWORD: typo3
       MYSQL_ROOT_PASSWORD: root
-    tmpfs:
-      - /var/lib/mysql
+    volumes:
+      - type: tmpfs
+        target: /var/lib/mysql
 
   mail:
     image: mailhog/mailhog:v1.0.1
