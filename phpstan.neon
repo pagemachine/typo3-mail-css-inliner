@@ -5,15 +5,12 @@ parameters:
   level: 5
 
   paths:
-    - ext_emconf.php
     - ext_localconf.php
     - Classes
   excludePaths:
     - Classes/Mail/Mailer.php
 
   ignoreErrors:
-    - message: '#Variable \$_EXTKEY might not be defined.#'
-      path: ext_emconf.php
     - message: '#Right side of || is always false.#'
       path: ext_localconf.php
       count: 1
