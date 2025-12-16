@@ -17,10 +17,10 @@
     ],
     "require": {
         "php": "^8.0",
-        "symfony/mailer": "^5.4 || ^6.4 || ^7.0",
-        "symfony/mime": "^5.4 || ^6.4 || ^7.0",
+        "symfony/mailer": "^6.4 || ^7.0",
+        "symfony/mime": "^6.4 || ^7.0",
         "tijsverkoyen/css-to-inline-styles": "^2.2",
-        "typo3/cms-core": "^11.5 || ^12.4"
+        "typo3/cms-core": "^12.4"
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.8",
@@ -31,10 +31,10 @@
         "php-parallel-lint/php-console-highlighter": "^1.0.0",
         "php-parallel-lint/php-parallel-lint": "^1.2",
         "phpstan/phpstan": "^1.0 || ^2.0",
-        "phpunit/phpunit": "^9.0 || ^10.0 || ^12.0",
+        "phpunit/phpunit": "^10.0 || ^12.0",
         "rpkamp/mailhog-client": "^2.0.0",
-        "typo3/coding-standards": "^0.7.1 || ^0.8.0",
-        "typo3/testing-framework": "^7.0 || ^8.0 || ^9.0"
+        "typo3/coding-standards": "^0.8.0",
+        "typo3/testing-framework": "^8.0 || ^9.0"
     },
     "replace": {
         "typo3-ter/mail-css-inliner": "self.version"
