@@ -81,9 +81,12 @@
             "@composer:lint",
             "@php:syntax:lint",
             "@php:style:lint",
-            "@php:static:lint"
+            "@php:static:lint",
+            "@php:rector:lint"
         ],
         "php:functional:test": "phpunit --configuration phpunit-functional.xml --colors=always",
+        "php:rector:fix": "rector",
+        "php:rector:lint": "rector --dry-run --no-progress-bar",
         "php:static:lint": "phpstan analyse --ansi --no-progress --configuration=phpstan.neon",
         "php:style:fix": "php-cs-fixer fix --diff",
         "php:style:lint": "php-cs-fixer fix --dry-run --diff",
