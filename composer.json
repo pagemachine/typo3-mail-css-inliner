@@ -16,7 +16,7 @@
         }
     ],
     "require": {
-        "php": "^8.0",
+        "php": "^8.2",
         "symfony/mailer": "^6.4 || ^7.0",
         "symfony/mime": "^6.4 || ^7.0",
         "tijsverkoyen/css-to-inline-styles": "^2.2",
