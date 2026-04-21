@@ -13,7 +13,7 @@ use Http\Factory\Guzzle\StreamFactory;
 use PHPUnit\Framework\Attributes\Test;
 use rpkamp\Mailhog\MailhogClient;
 use TYPO3\CMS\Core\Mail\FluidEmail;
-use TYPO3\CMS\Core\Mail\Mailer;
+use TYPO3\CMS\Core\Mail\MailerInterface;
 use TYPO3\CMS\Core\Mail\MailMessage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
@@ -63,11 +63,12 @@ final class SymfonyMailMessageTest extends FunctionalTestCase
 </html>
 HTML
         ;
-        GeneralUtility::makeInstance(MailMessage::class)
+
+        $mail = GeneralUtility::makeInstance(MailMessage::class)
             ->subject('Mail CSS Inliner Test')
             ->to('test@example.org')
-            ->html($htmlBody)
-            ->send();
+            ->html($htmlBody);
+        $this->get(MailerInterface::class)->send($mail);
 
         $expectedSubstring = <<<HTML
 <p style="color: red;">Test</p>
@@ -80,13 +81,13 @@ HTML
     #[Test]
     public function injectsInlineStylesIntoFluidEmail(): void
     {
-        $email = GeneralUtility::makeInstance(FluidEmail::class)
+        $mail = GeneralUtility::makeInstance(FluidEmail::class)
             ->subject('Mail CSS Inliner Test')
             ->to('test@example.org')
             ->setTemplate('InlineStyles')
             ->assign('content', 'Test')
         ;
-        GeneralUtility::makeInstance(Mailer::class)->send($email);
+        $this->get(MailerInterface::class)->send($mail);
 
         $expectedSubstring = <<<HTML
 <p style="color: red;">Test</p>
@@ -99,11 +100,11 @@ HTML
     #[Test]
     public function skipsMailWithoutHtmlBody(): void
     {
-        GeneralUtility::makeInstance(MailMessage::class)
+        $mail = GeneralUtility::makeInstance(MailMessage::class)
             ->subject('Mail CSS Inliner Test')
             ->to('test@example.org')
-            ->text('Test')
-            ->send();
+            ->text('Test');
+        $this->get(MailerInterface::class)->send($mail);
 
         $this->assertLastMessageBodyNotContains('<');
     }
