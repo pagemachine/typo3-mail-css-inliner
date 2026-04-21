@@ -94,7 +94,7 @@
         ],
         "deploy:ter:upload": [
             "composer global exec -v -- tailor set-version $TAG",
-            "composer global exec -v -- tailor ter:publish --comment \"$(git tag -l --format='%(contents)' $TAG)\" $TAG"
+            "composer global exec -v -- tailor ter:publish --comment \"See release at https://github.com/pagemachine/typo3-mail-css-inliner/releases/tag/$TAG\" $TAG"
         ],
         "fix:style": "php-cs-fixer fix --diff",
         "lint": [
