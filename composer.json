@@ -32,7 +32,9 @@
         "php-parallel-lint/php-parallel-lint": "^1.2",
         "phpstan/phpstan": "^1.0 || ^2.0",
         "phpunit/phpunit": "^10.0 || ^12.0 || ^13.0",
+        "rector/rector": "^2.0",
         "rpkamp/mailhog-client": "^2.0.0",
+        "ssch/typo3-rector": "^3.0",
         "typo3/coding-standards": "^0.8.0",
         "typo3/testing-framework": "^8.0 || ^9.0"
     },
@@ -79,9 +81,12 @@
             "@composer:lint",
             "@php:syntax:lint",
             "@php:style:lint",
-            "@php:static:lint"
+            "@php:static:lint",
+            "@php:rector:lint"
         ],
         "php:functional:test": "phpunit --configuration phpunit-functional.xml --colors=always",
+        "php:rector:fix": "rector",
+        "php:rector:lint": "rector --dry-run --no-progress-bar",
         "php:static:lint": "phpstan analyse --ansi --no-progress --configuration=phpstan.neon",
         "php:style:fix": "php-cs-fixer fix --diff",
         "php:style:lint": "php-cs-fixer fix --dry-run --diff",

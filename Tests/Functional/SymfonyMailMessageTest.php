@@ -7,10 +7,10 @@ namespace Pagemachine\MailCssInliner\Tests\Functional;
 /*
  * This file is part of the Pagemachine Mail CSS Inliner project.
  */
-
 use Http\Client\Curl\Client as HttpCurlClient;
 use Http\Factory\Guzzle\RequestFactory;
 use Http\Factory\Guzzle\StreamFactory;
+use PHPUnit\Framework\Attributes\Test;
 use rpkamp\Mailhog\MailhogClient;
 use TYPO3\CMS\Core\Mail\FluidEmail;
 use TYPO3\CMS\Core\Mail\Mailer;
@@ -44,9 +44,7 @@ final class SymfonyMailMessageTest extends FunctionalTestCase
         $this->purgeMailMessages();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function injectsInlineStylesIntoMailMessage(): void
     {
         $htmlBody = <<<HTML
@@ -79,9 +77,7 @@ HTML
         $this->assertLastMessageBodyContains($expectedSubstring);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function injectsInlineStylesIntoFluidEmail(): void
     {
         $email = GeneralUtility::makeInstance(FluidEmail::class)
@@ -100,9 +96,7 @@ HTML
         $this->assertLastMessageBodyContains($expectedSubstring);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function skipsMailWithoutHtmlBody(): void
     {
         GeneralUtility::makeInstance(MailMessage::class)
