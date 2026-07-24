@@ -19,7 +19,7 @@ final class Mailer extends CoreMailer
     /**
      * @inheritdoc
      */
-    public function send(RawMessage $message, Envelope $envelope = null): void
+    public function send(RawMessage $message, ?Envelope $envelope = null): void
     {
         if ($message instanceof Email && !empty($message->getHtmlBody())) {
             $converter = new CssToInlineStyles();
